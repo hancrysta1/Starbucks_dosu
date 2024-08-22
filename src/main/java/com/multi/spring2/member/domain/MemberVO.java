@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 public class MemberVO {
 
     private String id;
-    private String pw;
+    private String pwd;
     private String name;
-    private String tel;
-
     /*
         use shop2;
         CREATE TABLE `member` (

@@ -26,6 +26,17 @@ public class MemberService {
         return result;
     }
 
+    public Boolean idduechk(String id){
+        Boolean result = true;
+        try{
+            if(memberDAO.one(id)!=null){
+                result = false;
+            }
+        }
+        catch(Exception e){}
+        return result;
+    }
+
     public String update(MemberVO memberVO){
         String result = "회원수정 실패";
         if(memberDAO.update(memberVO) != 0){

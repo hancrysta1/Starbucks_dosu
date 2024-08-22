@@ -41,7 +41,7 @@ public class AppConfig {
         config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/shop?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true");
 
         config.setUsername("root");
-        config.setPassword("test");
+        config.setPassword("1234");
 
         config.setConnectionTimeout(30000); //풀에서 연결을 가져오기 위해 대기할 최대 시간(밀리초). 기본값은 30,000ms (30초)
         config.setMinimumIdle(3); //풀의 최소 연결 크기입니다. 기본값은 5입니다

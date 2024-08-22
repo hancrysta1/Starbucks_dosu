@@ -17,7 +17,7 @@ public class JDBCUtil {
 			System.out.println("1. driver loaded");
 
 			// JDBC 2단계 : 커넥션 연결
-			String jdbcUrl = "jdbc:mysql://localhost:3306/shop2?useSSL=false&allowPublicKeyRetrieval=true";
+			String jdbcUrl = "jdbc:mysql://localhost:3306/shop?useSSL=false&allowPublicKeyRetrieval=true";
 			conn = DriverManager.getConnection(jdbcUrl, "root", "1234");
 			System.out.println("2. connection established");
 		} catch (Exception e) {
