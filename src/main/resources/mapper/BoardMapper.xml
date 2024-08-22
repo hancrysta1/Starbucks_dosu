@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.spring2.board.mapper.BoardMapper">
+
+
+
+
+
+    <insert id="insert"
+            parameterType="Board">
+        INSERT INTO board(board_title, board_content, board_writer)
+        VALUES (#{boardTitle}, #{boardContent}, #{boardWriter})
+        <selectKey  keyProperty="boardNo" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <select id="selectAll"
+            resultType="Board"
+    >
+        SELECT *
+        FROM board
+        ORDER BY board_no DESC
+    </select>
+    <select id="selectById" parameterType="int" resultType="Board">
+        SELECT *
+        FROM board
+        WHERE board_no=#{no}
+    </select>
+    <select id="selectByWord" parameterType="string" resultType="Board">
+        SELECT *
+        FROM board
+        WHERE board_no LIKE #{word}
+        OR board_title LIKE #{word}
+        OR board_writer  LIKE #{word}
+    </select>
+    <delete id="delete">
+        DELETE FROM board WHERE board_no=#{boardNo}
+    </delete>
+    <update id="update" parameterType="Board">
+        UPDATE board
+        <set>
+            <if test="boardTitle != null and boardTitle != ''">
+                board_title=#{boardTitle},
+            </if>
+            <if test="boardContent != null and boardContent != ''">
+                board_content=#{boardContent},
+            </if>
+        </set>
+        <where>
+        board_no=#{boardNo}
+        </where>
+    </update>
+    <select id="count" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM board
+        <where>
+            <if test="word != null and word != ''">
+                board_no LIKE CONCAT('%', #{word}, '%')
+                OR
+                board_title LIKE CONCAT('%', #{word}, '%')
+                OR
+                board_Writer LIKE CONCAT('%', #{word}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="selectByPage" parameterType="map" resultType="Board">
+        SELECT *
+        FROM board
+        <where>
+            <if test="word != null and word != ''">
+                board_no LIKE CONCAT('%', #{word}, '%')
+                OR
+                board_title LIKE CONCAT('%', #{word}, '%')
+                OR
+                board_Writer LIKE CONCAT('%', #{word}, '%')
+            </if>
+        </where>
+        ORDER BY board_no DESC
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+</mapper>
