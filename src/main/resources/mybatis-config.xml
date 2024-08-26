@@ -9,9 +9,12 @@
     <typeAliases>
         <typeAlias type="com.multi.spring2.board.domain.Board"
                    alias="Board"/>
+        <typeAlias type="com.multi.spring2.product.domain.Product"
+                   alias="Product"/>
     </typeAliases>
     <mappers>
 <!--        <mapper resource="mapper/BoardMapper.xml"/>-->
         <mapper class="com.multi.spring2.board.mapper.BoardMapper"/>
+        <mapper class="com.multi.spring2.product.mapper.ProductMapper"/>
     </mappers>
 </configuration>

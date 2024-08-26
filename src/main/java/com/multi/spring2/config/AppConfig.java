@@ -38,10 +38,10 @@ public class AppConfig {
 //        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 //        config.setJdbcUrl("jdbc:mysql://localhost:3306/shop?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true");
         config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-        config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/shop?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true");
+        config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/shopdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true");
 
         config.setUsername("root");
-        config.setPassword("test");
+        config.setPassword("0000");
 
         config.setConnectionTimeout(30000); //풀에서 연결을 가져오기 위해 대기할 최대 시간(밀리초). 기본값은 30,000ms (30초)
         config.setMinimumIdle(3); //풀의 최소 연결 크기입니다. 기본값은 5입니다
@@ -64,7 +64,8 @@ public class AppConfig {
 
 //        mapper용 xml에서 <insert>, <select>태그를 사용하려면 설정하세요
         Resource[] mapperLocations = new Resource[] {
-                new ClassPathResource("mapper/BoardMapper.xml")
+                new ClassPathResource("mapper/BoardMapper.xml"),
+                new ClassPathResource("mapper/ProductMapper.xml")
         };
         sessionFactory.setMapperLocations(mapperLocations);
 
@@ -75,6 +76,7 @@ public class AppConfig {
                 new org.apache.ibatis.session.Configuration();
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.getTypeAliasRegistry().registerAlias("Board", com.multi.spring2.board.domain.Board.class);
+        configuration.getTypeAliasRegistry().registerAlias("Product", com.multi.spring2.product.domain.Product.class);
 
 //        mapper용 interface에서 @Insert, @Select등의 어노테이션을 사용하려면 설정하세요
 //        @Insert, @Select등의 어노테이션 사용을 안할거면 설정 안합니다

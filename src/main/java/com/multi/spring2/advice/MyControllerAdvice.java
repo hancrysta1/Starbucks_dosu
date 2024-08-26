@@ -1,4 +1,4 @@
-package com.multi.spring2.board.advice;
+package com.multi.spring2.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
